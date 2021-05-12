@@ -29,6 +29,42 @@ public class HttpURLConnectionClient extends HttpClient {
    * @throws ApiConnectionException if an error occurs when sending or receiving
    */
   @Override
+  public StripeResponseStream requestStream(StripeRequest request) throws ApiConnectionException {
+    try {
+      final HttpURLConnection conn = createStripeConnection(request);
+
+      // Calling `getResponseCode()` triggers the request.
+      final int responseCode = conn.getResponseCode();
+
+      final HttpHeaders headers = HttpHeaders.of(conn.getHeaderFields());
+
+      final InputStream responseStream =
+          (responseCode >= 200 && responseCode < 300)
+              ? conn.getInputStream()
+              : conn.getErrorStream();
+
+      return new StripeResponseStream(responseCode, headers, responseStream);
+
+    } catch (IOException e) {
+      throw new ApiConnectionException(
+          String.format(
+              "IOException during API request to Stripe (%s): %s "
+                  + "Please check your internet connection and try again. If this problem persists,"
+                  + "you should check Stripe's service status at https://twitter.com/stripestatus,"
+                  + " or let us know at support@stripe.com.",
+              Stripe.getApiBase(), e.getMessage()),
+          e);
+    }
+  }
+
+  /**
+   * Sends the given request to Stripe's API, and returns a buffered response.
+   *
+   * @param request the request
+   * @return the response
+   * @throws ApiConnectionException if an error occurs when sending or receiving
+   */
+  @Override
   public StripeResponse request(StripeRequest request) throws ApiConnectionException {
     try {
       final HttpURLConnection conn = createStripeConnection(request);

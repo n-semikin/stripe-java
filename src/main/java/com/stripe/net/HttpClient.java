@@ -29,13 +29,25 @@ public abstract class HttpClient {
   protected HttpClient() {}
 
   /**
-   * Sends the given request to Stripe's API.
+   * Sends the given request to Stripe's API, buffering the response body into memory.
    *
    * @param request the request
    * @return the response
    * @throws StripeException If the request fails for any reason
    */
   public abstract StripeResponse request(StripeRequest request) throws StripeException;
+
+  /**
+   * Sends the given request to Stripe's API, streaming the response body.
+   *
+   * @param request the request
+   * @return the response
+   * @throws StripeException If the request fails for any reason
+   */
+  public StripeResponseStream requestStream(StripeRequest request) throws StripeException {
+    throw new UnsupportedOperationException(
+        "streamingRequest is unimplemented for this HttpClient");
+  }
 
   /**
    * Sends the given request to Stripe's API, handling telemetry if not disabled.
