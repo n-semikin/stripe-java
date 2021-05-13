@@ -19,11 +19,13 @@ import lombok.experimental.NonFinal;
 /** A response from Stripe's API. */
 @Value
 @Accessors(fluent = true)
-public class StripeResponseStream {
+public class StripeResponseStream implements StripeResponseInterface {
   /** The HTTP status code of the response. */
+  @Getter(onMethod_ = {@Override})
   int code;
 
   /** The HTTP headers of the response. */
+  @Getter(onMethod_ = {@Override})
   HttpHeaders headers;
 
   /** The body of the response. */
@@ -33,8 +35,8 @@ public class StripeResponseStream {
 
   /** Number of times the request was retried. Used for internal tests only. */
   @NonFinal
-  @Getter(AccessLevel.PACKAGE)
-  @Setter(AccessLevel.PACKAGE)
+  @Getter(onMethod_ = {@Override})
+  @Setter(onMethod_ = {@Override})
   int numRetries;
 
   /**
@@ -65,6 +67,7 @@ public class StripeResponseStream {
    *
    * @return the date of the request, as returned by Stripe
    */
+  @Override
   public Instant date() {
     Optional<String> dateStr = this.headers.firstValue("Date");
     if (!dateStr.isPresent()) {
@@ -78,6 +81,7 @@ public class StripeResponseStream {
    *
    * @return the idempotency key of the request, as returned by Stripe
    */
+  @Override
   public String idempotencyKey() {
     return this.headers.firstValue("Idempotency-Key").orElse(null);
   }
@@ -87,6 +91,7 @@ public class StripeResponseStream {
    *
    * @return the ID of the request, as returned by Stripe
    */
+  @Override
   public String requestId() {
     return this.headers.firstValue("Request-Id").orElse(null);
   }

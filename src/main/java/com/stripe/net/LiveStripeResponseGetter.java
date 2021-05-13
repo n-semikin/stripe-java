@@ -85,7 +85,7 @@ public class LiveStripeResponseGetter implements StripeResponseGetter {
       RequestOptions options)
       throws StripeException {
     StripeRequest request = new StripeRequest(method, url, params, options);
-    StripeResponseStream responseStream = httpClient.requestStream(request);
+    StripeResponseStream responseStream = httpClient.requestStreamWithRetries(request);
 
     int responseCode = responseStream.code();
 
