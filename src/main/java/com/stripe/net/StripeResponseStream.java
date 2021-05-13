@@ -42,7 +42,7 @@ public class StripeResponseStream {
    *
    * @param code the HTTP status code of the response
    * @param headers the HTTP headers of the response
-   * @param body the body of the response
+   * @param bodyStream streaming body response
    * @throws NullPointerException if {@code headers} or {@code body} is {@code null}
    */
   public StripeResponseStream(int code, HttpHeaders headers, InputStream bodyStream) {
