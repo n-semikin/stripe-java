@@ -12,7 +12,7 @@ import lombok.Value;
 import lombok.experimental.Accessors;
 import lombok.experimental.NonFinal;
 
-/** A response from Stripe's API. */
+/** A response from Stripe's API, with body represented as a String. */
 @Value
 @Accessors(fluent = true)
 public class StripeResponse implements StripeResponseInterface {

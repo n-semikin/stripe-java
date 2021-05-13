@@ -16,7 +16,7 @@ import lombok.Value;
 import lombok.experimental.Accessors;
 import lombok.experimental.NonFinal;
 
-/** A response from Stripe's API. */
+/** A response from Stripe's API, with a body represented as an InputStream. */
 @Value
 @Accessors(fluent = true)
 public class StripeResponseStream implements StripeResponseInterface {
