@@ -15,6 +15,18 @@ This package adds support for the `search` method on the `Charge`, `Customer`,
 
 ## Installation
 
+### Requirements
+
+- Java 1.8 or later
+
+### Gradle users
+
+Add this dependency to your project's build file:
+
+```groovy
+implementation "com.stripe:stripe-java-search-beta:20.75.0"
+```
+
 ### Maven users
 
 Add this dependency to your project's POM:
