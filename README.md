@@ -24,7 +24,7 @@ This package adds support for the `search` method on the `Charge`, `Customer`,
 Add this dependency to your project's build file:
 
 ```groovy
-implementation "com.stripe:stripe-java-search-beta:20.75.0"
+implementation "com.stripe:stripe-java-search-beta:20.85.0"
 ```
 
 ### Maven users
@@ -35,7 +35,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.stripe</groupId>
   <artifactId>stripe-java-search-beta</artifactId>
-  <version>20.75.0</version>
+  <version>20.85.0</version>
 </dependency>
 ```
 

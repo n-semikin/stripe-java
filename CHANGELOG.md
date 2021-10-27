@@ -1,4 +1,18 @@
-# Changelog
+# Changelog - `stripe-search-beta`
+
+## 20.85.0 - 2021-10-27
+* [#1277](https://github.com/stripe/stripe-java/pull/1277) search-beta: API Updates
+  * Bugfix (breaking type change): moves `PaymentIntent.search` from an instance method to a static method.
+  * Add support for `search` on Price
+  * Add support for `search` on Product
+
+* [#1276](https://github.com/stripe/stripe-java/pull/1276) All updates from the mainline `stripe` since `20.75.0`.
+
+## 20.75.0 - 2021-09-13
+
+Initial branch from `stripe-java` v20.75.0.
+
+# Changelog - `stripe`
 
 ## 20.85.0 - 2021-10-20
 * [#1275](https://github.com/stripe/stripe-java/pull/1275) Reorder fields
